@@ -1,6 +1,7 @@
 import pygame
 import settings
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -10,6 +11,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = settings.Screen.WIDTH / 2
         self.rect.bottom = settings.Screen.HEIGHT - 10
         self.speedX = 0
+        self.speedY = 0
+
 
     def update(self):
         pygame.sprite.Sprite.update(self)

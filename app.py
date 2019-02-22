@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 import settings
+from wall import Wall
 
 class App():
     def __init__(self):
@@ -16,8 +17,10 @@ class App():
 
         #On crée une instance de la classe Player
         self.player = Player()
+        self.w = Wall()
         #... et on l'ajoute au groupe de sprites
         self.all_sprites.add(self.player)
+        self.all_sprites.add(self.w)
 
     def Start(self):
         running = True
@@ -37,6 +40,7 @@ class App():
             # Tous les sprites sont dessinés
             self.screen.fill(settings.Colors.BLACK)
             self.all_sprites.draw(self.screen)
+
 
             # Une fois que tout est dessiné, on l'affiche à l'écran
             pygame.display.flip()
