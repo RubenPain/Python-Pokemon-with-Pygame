@@ -32,3 +32,19 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = settings.Screen.WIDTH
         if self.rect.left < 0:
             self.rect.left = 0
+
+        # La vitesse est remise à 0 à chaque frame, sauf si on appuie sur la flèche haut ou la flèche bas
+        self.speedY = 0
+        if keys_pressed[pygame.K_UP]:
+            self.speedY = -5
+        if keys_pressed[pygame.K_DOWN]:
+            self.speedY = 5
+
+        # On bouge le vaisseau en fonction de la vitesse
+        self.rect.y += self.speedY
+
+        # On empêche le vaisseau de sortir de l'écran
+        if self.rect.bottom > settings.Screen.HEIGHT:
+            self.rect.bottom = settings.Screen.HEIGHT
+        if self.rect.top < 0:
+            self.rect.top = 0
