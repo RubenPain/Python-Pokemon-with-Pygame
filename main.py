@@ -1,5 +1,5 @@
 import pygame
-from App import App
+from app import App
 
 app = App()
 app.Start()
