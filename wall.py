@@ -3,10 +3,13 @@ from settings import *
 
 
 class Wall(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((200, 50))
+    def __init__(self, app, x, y):
+        self.groups = app.all_sprites, app.walls
+        pygame.sprite.Sprite.__init__(self, self.groups)
+        self.image = pygame.Surface((Screen.TSIZE, Screen.TSIZE))
         self.image.fill(Colors.RED)
         self.rect = self.image.get_rect()
-        self.rect.x = Screen.WIDTH/2
-        self.rect.y = Screen.HEIGHT/2
+        self.x = x
+        self.y = y
+        self.rect.x = x * Screen.TSIZE
+        self.rect.y = y * Screen.TSIZE

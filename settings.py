@@ -2,9 +2,12 @@
 
 class Screen:
     #On définit les variables concernant notre jeu
-    WIDTH = 400
-    HEIGHT = 600
-    FPS = 60
+    WIDTH = 1024
+    HEIGHT = 768
+    FPS = 10
+    TSIZE = 32
+    GRIDWIDTH = WIDTH / TSIZE
+    GRIDHEIGHT = HEIGHT / TSIZE
 
 class Colors:
     # On définit des couleurs à utiliser plus tard

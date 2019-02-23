@@ -3,16 +3,24 @@ import settings
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((32, 64))
+    def __init__(self, app, x , y):
+        self.groups = app.all_sprites
+        pygame.sprite.Sprite.__init__(self, self.groups)
+        self.app = app
+        self.image = pygame.Surface((settings.Screen.TSIZE, settings.Screen.TSIZE))
         self.image.fill(settings.Colors.GREEN)
         self.rect = self.image.get_rect()
-        self.rect.centerx = settings.Screen.WIDTH / 2
-        self.rect.bottom = settings.Screen.HEIGHT - 10
+        self.x = x
+        self.y = y
         self.speedX = 0
         self.speedY = 0
 
+
+    def collide_with_walls(self, dx=0, dy=0):
+        for wall in self.app.walls:
+            if wall.x == self.x + dx and wall.y == self.y + dy:
+                return True
+        return False
 
     def update(self):
         pygame.sprite.Sprite.update(self)
@@ -23,12 +31,9 @@ class Player(pygame.sprite.Sprite):
         # La vitesse est remise à 0 à chaque frame, sauf si on appuie sur la flèche gauche ou la flèche droite
         self.speedX = 0
         if keys_pressed[pygame.K_LEFT]:
-            self.speedX = -5
+            self.speedX = -1
         if keys_pressed[pygame.K_RIGHT]:
-            self.speedX = 5
-
-        # On bouge le vaisseau en fonction de la vitesse
-        self.rect.x += self.speedX
+            self.speedX = 1
 
         # On empêche le vaisseau de sortir de l'écran
         if self.rect.right > settings.Screen.WIDTH:
@@ -39,12 +44,18 @@ class Player(pygame.sprite.Sprite):
         # La vitesse est remise à 0 à chaque frame, sauf si on appuie sur la flèche haut ou la flèche bas
         self.speedY = 0
         if keys_pressed[pygame.K_UP]:
-            self.speedY = -5
+            self.speedY = -1
         if keys_pressed[pygame.K_DOWN]:
-            self.speedY = 5
+            self.speedY = 1
 
         # On bouge le vaisseau en fonction de la vitesse
-        self.rect.y += self.speedY
+        if not self.collide_with_walls(self.speedX, self.speedY):
+            self.x += self.speedX
+            self.y += self.speedY
+
+        self.rect.x = self.x * settings.Screen.TSIZE
+        self.rect.y = self.y * settings.Screen.TSIZE
+
 
         # On empêche le vaisseau de sortir de l'écran
         if self.rect.bottom > settings.Screen.HEIGHT:
