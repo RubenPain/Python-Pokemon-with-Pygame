@@ -1,17 +1,20 @@
 import pygame
 import settings
+# Pour transmettre deux coordonées plus simplement
 spd = pygame.math.Vector2
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, app, x , y):
+        # Directement add au group
         self.groups = app.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.app = app
-        self.image = pygame.Surface((34, 48))
+        #création du joueur et sa surface
+        self.image = pygame.Surface((settings.Screen.TSIZE, settings.Screen.TSIZE))
         self.rect = self.image.get_rect()
         self.spd = spd(0, 0)
-        self.pos = spd(x, y)*settings.Screen.TSIZE
+        self.pos = spd(x, y)
         self.currentFrame = 2
         self.cells = []
         self.frames = []
@@ -19,10 +22,12 @@ class Player(pygame.sprite.Sprite):
 
             # On crée une case
             cell = (self.app.data[i]['x'], self.app.data[i]['y'], self.app.data[i]['width'], self.app.data[i]['height'])
+
             # On crée une Surface de la taille d'une case
-            frame = pygame.surface.Surface((34, 48))
+            frame = pygame.surface.Surface((self.app.data[i]['width'], self.app.data[i]['height']))
             # Sur laquelle on dessine la case de la spritesheet qui nous intéresse
             frame.blit(self.app.pl_img, (0, 0), cell)
+            frame = pygame.transform.scale(frame,(settings.Screen.TSIZE,settings.Screen.TSIZE))
 
             # On ajoute la frame à une liste
             self.frames.append(frame)
@@ -33,6 +38,7 @@ class Player(pygame.sprite.Sprite):
 
 
     def collide_with_walls(self, dir):
+        # Test des collisions sur x et y en fct des positions player et wall
         if dir == 'x':
             hit = pygame.sprite.spritecollide(self, self.app.walls, False)
             if hit:
@@ -64,12 +70,15 @@ class Player(pygame.sprite.Sprite):
         # La vitesse est remise à 0 à chaque frame, sauf si on appuie sur la flèche gauche ou la flèche droite
         self.spd = spd(0,0)
         if keys_pressed[pygame.K_LEFT]:
+            # Update des frames pour que celles que l'on souhaite utiliser tourne en boucle
+            # Exemple qd on va à gauche notre player n'est pas sur sa frame qui va vers le haut
             self.currentFrame += 1
             if self.currentFrame >= 7 or self.currentFrame < 4:
                 self.currentFrame = 4
             self.spd.x = -settings.P1.P1_Speed
             self.image = self.frames[self.currentFrame]
             self.image.set_colorkey(settings.Colors.BLACK)
+            # Délai sinon actualisation trop rapide des frames juste pour que ce soit fluide au visu
             pygame.time.delay(130)
 
         elif keys_pressed[pygame.K_RIGHT]:
@@ -102,9 +111,10 @@ class Player(pygame.sprite.Sprite):
 
 
 
-        # On bouge le vaisseau en fonction de la vitesse
+        # On bouge le player en fonction de la vitesse multiplié par les FPS pour la fluidité
         self.pos += self.spd * self.app.time
 
+        # Actualisation des positions pour renvoyer les infos à la fct des collisions
         self.rect.x = self.pos.x
         self.collide_with_walls('x')
         self.rect.y = self.pos.y

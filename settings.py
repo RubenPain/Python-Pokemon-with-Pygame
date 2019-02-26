@@ -5,7 +5,7 @@ class Screen:
     WIDTH = 1024
     HEIGHT = 768
     FPS = 60
-    TSIZE = 48
+    TSIZE = 32
     GRIDWIDTH = WIDTH / TSIZE
     GRIDHEIGHT = HEIGHT / TSIZE
 
@@ -18,6 +18,7 @@ class Colors:
     BLUE = (0, 0, 255)
 
 class P1:
+    # On définit les caractéristiques du player (utilisation plus simple)
     P1_Speed = 300
     P1_img = 'RED.png'
     P1_json = 'sprites.json'
