@@ -49,6 +49,8 @@ class App():
                 self.player = Player(self, t_objet.x, t_objet.y)
             if t_objet.name == 'wall':
                 Obstacle(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
+           # if t_objet.name == 'png':
+            #  png(self)
         # Création de la caméra
         self.camera = Camera(self.map.width, self.map.height)
 
