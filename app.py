@@ -28,8 +28,8 @@ class App():
         self.map_img = self.map.make_map()
         self.map_rect = self.map_img.get_rect()
         self.pl_img = pygame.image.load(path.join(img_folder, settings.P1.P1_img)).convert_alpha()
-        with open('img/assets/sprites.json', 'r') as f:
-            self.data = json.load(f)
+        with open('img/assets/red.json', 'r') as f:
+            self.datared = json.load(f)
 
     def create(self):
         # On crée un groupe pour les sprites
@@ -79,7 +79,7 @@ class App():
 
             # La map est dessinée
             self.screen.blit(self.map_img, self.camera.apply_rect(self.map_rect))
-            #self.draw_grid()
+            # self.draw_grid()
             # Tous les sprites dans le grp sont dessinés
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, self.camera.apply(sprite))

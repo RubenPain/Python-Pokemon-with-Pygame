@@ -5,7 +5,7 @@ spd = pygame.math.Vector2
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, app, x , y):
+    def __init__(self, app, x, y):
         # Directement add au group
         self.groups = app.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
@@ -21,10 +21,10 @@ class Player(pygame.sprite.Sprite):
         for i in range(15):
 
             # On crée une case
-            cell = (self.app.data[i]['x'], self.app.data[i]['y'], self.app.data[i]['width'], self.app.data[i]['height'])
+            cell = (self.app.datared[i]['x'], self.app.datared[i]['y'], self.app.datared[i]['width'], self.app.datared[i]['height'])
 
             # On crée une Surface de la taille d'une case
-            frame = pygame.surface.Surface((self.app.data[i]['width'], self.app.data[i]['height']))
+            frame = pygame.surface.Surface((self.app.datared[i]['width'], self.app.datared[i]['height']))
             # Sur laquelle on dessine la case de la spritesheet qui nous intéresse
             frame.blit(self.app.pl_img, (0, 0), cell)
             frame = pygame.transform.scale(frame,(settings.Screen.TSIZE,settings.Screen.TSIZE))
