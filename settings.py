@@ -26,5 +26,5 @@ class P1:
 class NPC:
     # On défini les caractéristiques des pnj
     NPC_Speed = 0
-    NPC_img = 'png1.png'
-    NPC_json = 'png1.json'
+    NPC_img = 'npc.png'
+    NPC_json = 'npc.json'
