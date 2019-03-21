@@ -22,3 +22,9 @@ class P1:
     P1_Speed = 300
     P1_img = 'RED.png'
     P1_json = 'sprites.json'
+
+class NPC:
+    # On défini les caractéristiques des pnj
+    NPC_Speed = 0
+    NPC_img = 'png1.png'
+    NPC_json = 'png1.json'
