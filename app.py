@@ -5,7 +5,7 @@ from wall import Obstacle
 from os import path
 from tmap import Tmap
 from cam import Camera
-from png import Png
+from npc import NPC
 import json
 
 
@@ -50,8 +50,8 @@ class App():
                 self.player = Player(self, t_objet.x, t_objet.y)
             if t_objet.name == 'wall':
                 Obstacle(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
-            if t_objet.name == 'png':
-                Png(self, t_objet.x, t_objet.y)
+            if t_objet.name == 'npc':
+                NPC(self, t_objet.x, t_objet.y)
         # Création de la caméra
         self.camera = Camera(self.map.width, self.map.height)
 
