@@ -439,6 +439,6 @@
   <object id="141" name="wall" x="722" y="1488.67" width="144" height="97.3333"/>
   <object id="142" name="wall" x="674" y="1585.33" width="97.333" height="48"/>
   <object id="143" name="wall" x="1152.67" y="721.333" width="94.6667" height="96"/>
-  <object id="144" name="png" x="534.667" y="1977.67" width="32" height="32"/>
+  <object id="144" name="npc" x="534.667" y="1977.67" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -58,6 +58,7 @@ class Player(pygame.sprite.Sprite):
                 self.spd.y = 0
                 self.rect.y = self.pos.y
 
+
     def update(self):
         pygame.sprite.Sprite.update(self)
 
