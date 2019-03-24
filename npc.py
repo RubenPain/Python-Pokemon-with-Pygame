@@ -1,7 +1,5 @@
 import pygame
 from wall import *
-
-
 import settings
 
 
@@ -16,8 +14,5 @@ class NPC(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-    ''' def update(self):
+    def update(self):
         pygame.sprite.Sprite.update(self)
-        self.image = self.frames[self.currentFrame]
-        self.image.set_colorkey(settings.Colors.BLACK)'''
-

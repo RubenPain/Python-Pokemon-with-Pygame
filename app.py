@@ -33,6 +33,9 @@ class App():
         self.pl_img = pygame.image.load(path.join(img_folder, settings.P1.P1_img)).convert_alpha()
         with open('img/assets/red.json', 'r') as f:
             self.datared = json.load(f)
+        self.npc_img = pygame.image.load(path.join(img_folder, settings.NPC.NPC_img)).convert_alpha()
+        with open('img/assets/npc.json', 'r') as g:
+            self.datanpc = json.load(g)
 
 
 
