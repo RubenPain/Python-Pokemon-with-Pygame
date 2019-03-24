@@ -26,3 +26,15 @@ class Obstacle(pygame.sprite.Sprite):
         self.y = y
         self.rect.x = x
         self.rect.y = y
+
+class HH(pygame.sprite.Sprite):
+    def __init__(self, app, x, y, w, h):
+        # Création des obstacles et add au groupe
+        self.groups = app.hh
+        pygame.sprite.Sprite.__init__(self, self.groups)
+        self.app = app
+        self.rect = pygame.Rect(x, y, w, h)
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y

@@ -1,0 +1,28 @@
+import random
+
+class Screen:
+    #On définit les variables concernant notre jeu
+    WIDTH = 1024
+    HEIGHT = 720
+    FPS = 60
+
+class Colors:
+    # On définit des couleurs à utiliser plus tard
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    RED = (255, 0, 0)
+    GREEN = (0, 255, 0)
+    BLUE = (0, 0, 255)
+
+class entity:
+    life_enm = random.randint(15,50)
+
+class pokemon:
+    poke_dict = {}
+    poke_list = [('Lugia','Ultralaser'),('Raikou','Tonnerre'),('Lugia',(15,25)),('Raikou',random.randint(15,25))]
+    for (x,y) in poke_list:
+        if x in poke_dict:
+            poke_dict[x].append(y)
+        else:
+            poke_dict[x] = [y]
+

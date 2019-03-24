@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.currentFrame = 2
         self.cells = []
         self.frames = []
+        self.hh = False
         for i in range(15):
 
             # On crée une case
@@ -58,7 +59,10 @@ class Player(pygame.sprite.Sprite):
                 self.spd.y = 0
                 self.rect.y = self.pos.y
 
-
+    def hautes_herbes(self):
+        hit = pygame.sprite.spritecollide(self, self.app.hh, False)
+        if hit:
+            self.hh = True
     def update(self):
         pygame.sprite.Sprite.update(self)
 
@@ -120,4 +124,5 @@ class Player(pygame.sprite.Sprite):
         self.collide_with_walls('x')
         self.rect.y = self.pos.y
         self.collide_with_walls('y')
+        self.hautes_herbes()
 

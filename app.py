@@ -1,12 +1,14 @@
 import pygame
 from player import Player
 import settings
-from wall import Obstacle
+from wall import Obstacle, HH
 from os import path
 from tmap import Tmap
 from cam import Camera
 from npc import NPC
 import json
+import EC.menu
+import random
 
 
 class App():
@@ -32,10 +34,14 @@ class App():
         with open('img/assets/red.json', 'r') as f:
             self.datared = json.load(f)
 
+
+
     def create(self):
         # On crée un groupe pour les sprites
         self.all_sprites = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
+        self.hh = pygame.sprite.Group()
+        self.combat = pygame.sprite.Group()
         '''
         for row, tiles in enumerate(self.map.data):
             for col, tile in enumerate(tiles):
@@ -52,9 +58,13 @@ class App():
                 Obstacle(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
             if t_objet.name == 'npc':
                 NPC(self, t_objet.x, t_objet.y)
+            if t_objet.name == 'hh':
+                HH(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
         # Création de la caméra
         self.camera = Camera(self.map.width, self.map.height)
-
+        self.EC = EC.menu.EC()
+        self.combat.add(self.EC)
+        self.count_fade = True
 
     def draw_grid(self):
         # Pour quadriller la map
@@ -62,6 +72,22 @@ class App():
             pygame.draw.line(self.screen, settings.Colors.WHITE, (x, 0), (x, settings.Screen.HEIGHT))
         for y in range(0, settings.Screen.HEIGHT, settings.Screen.TSIZE):
             pygame.draw.line(self.screen, settings.Colors.WHITE, (0, y), (settings.Screen.WIDTH, y))
+
+    def fade(self, surf, width, height):
+        fade_white = pygame.Surface((width, height))
+        fade_white.fill((255, 255, 255))
+        fade_black = pygame.Surface((width, height))
+        fade_black.fill((0, 0, 0))
+        for alpha in range(0, 300):
+            fade_black.set_alpha(alpha)
+            surf.blit(fade_black, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(1)
+            fade_white.set_alpha(alpha)
+            surf.blit(fade_white, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(1)
+
 
     def Start(self):
         running = True
@@ -75,17 +101,27 @@ class App():
                 if event.type == pygame.QUIT:
                     running = False
 
-            # Tous les sprites sont updatés
-            self.all_sprites.update()
-            # Update de la caméra en fonction du joueur puisqu'elle le suit
-            self.camera.update(self.player)
+
+            if not self.player.hh:
+                # Tous les sprites sont updatés
+                self.all_sprites.update()
+                # Update de la caméra en fonction du joueur puisqu'elle le suit
+                self.camera.update(self.player)
+
 
             # La map est dessinée
             self.screen.blit(self.map_img, self.camera.apply_rect(self.map_rect))
+
             # self.draw_grid()
             # Tous les sprites dans le grp sont dessinés
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
+            if self.player.hh:
+                if self.count_fade:
+                    self.fade(self.screen, 1500, 1500)
+                    self.count_fade = False
+                self.combat.draw(self.screen)
+                self.EC.update()
 
 
             # Une fois que tout est dessiné, on l'affiche à l'écran
