@@ -105,7 +105,7 @@ class App():
                     running = False
 
 
-            if not self.player.hh:
+            if self.player.hh != 2:
                 # Tous les sprites sont updatés
                 self.all_sprites.update()
                 # Update de la caméra en fonction du joueur puisqu'elle le suit
@@ -119,7 +119,7 @@ class App():
             # Tous les sprites dans le grp sont dessinés
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
-            if self.player.hh:
+            if self.player.hh == 2:
                 if self.count_fade:
                     self.fade(self.screen, 1500, 1500)
                     self.count_fade = False

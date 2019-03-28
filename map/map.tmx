@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="48" tileheight="48" infinite="0" nextlayerid="9" nextobjectid="145">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="48" tileheight="48" infinite="0" nextlayerid="9" nextobjectid="244">
  <tileset firstgid="1" name="grass" tilewidth="48" tileheight="48" tilecount="20" columns="5">
   <image source="grass.jpg" width="252" height="200"/>
  </tileset>
@@ -385,7 +385,7 @@
   <object id="98" name="wall" x="1245.33" y="818" width="50.6663" height="90.6666"/>
   <object id="99" name="wall" x="1777.33" y="958" width="95.9997" height="46.6666"/>
   <object id="100" name="wall" x="2449.33" y="527.333" width="47.9997" height="47.9999"/>
-  <object id="101" name="wall" x="815.333" y="909.333" width="97.333" height="48"/>
+  <object id="101" name="wall" x="824.333" y="909.333" width="88.333" height="48"/>
   <object id="102" name="wall" x="860.667" y="862.667" width="97.333" height="48"/>
   <object id="103" name="wall" x="924.667" y="813.333" width="81.333" height="48"/>
   <object id="104" name="wall" x="959.333" y="766.667" width="97.333" height="48"/>
@@ -402,13 +402,6 @@
   <object id="115" name="wall" x="770" y="2064.67" width="30.6667" height="28">
    <ellipse/>
   </object>
-  <object id="116" name="hh" x="132" y="1389.33" width="117.333" height="114.667"/>
-  <object id="118" name="hh" x="374.667" y="1053.33" width="117.333" height="114.667"/>
-  <object id="119" name="hh" x="614.667" y="1145.33" width="117.333" height="114.667"/>
-  <object id="120" name="hh" x="708" y="618.667" width="117.333" height="114.667"/>
-  <object id="121" name="hh" x="709.333" y="813.333" width="117.333" height="114.667"/>
-  <object id="122" name="hh" x="514.667" y="812" width="61.333" height="114.667"/>
-  <object id="123" name="hh" x="865.333" y="716" width="61.333" height="114.667"/>
   <object id="124" name="wall" x="194" y="342" width="30.6667" height="28">
    <ellipse/>
   </object>
@@ -440,5 +433,101 @@
   <object id="142" name="wall" x="674" y="1585.33" width="97.333" height="48"/>
   <object id="143" name="wall" x="1152.67" y="721.333" width="94.6667" height="96"/>
   <object id="144" name="npc" x="534.667" y="1977.67" width="74" height="74"/>
+  <object id="148" name="hh" x="614.333" y="1180.67" width="23.333" height="21.667"/>
+  <object id="149" name="hh" x="645.333" y="1182.17" width="23.333" height="21.667"/>
+  <object id="150" name="hh" x="675.333" y="1182.17" width="23.333" height="21.667"/>
+  <object id="151" name="hh" x="704.333" y="1181.17" width="23.333" height="21.667"/>
+  <object id="152" name="hh" x="644.333" y="1208.17" width="23.333" height="21.667"/>
+  <object id="153" name="hh" x="677.333" y="1209.17" width="23.333" height="21.667"/>
+  <object id="154" name="hh" x="706.333" y="1207.17" width="23.333" height="21.667"/>
+  <object id="155" name="hh" x="614.333" y="1209.17" width="23.333" height="21.667"/>
+  <object id="156" name="hh" x="615.333" y="1237.17" width="23.333" height="21.667"/>
+  <object id="157" name="hh" x="643.333" y="1237.17" width="23.333" height="21.667"/>
+  <object id="158" name="hh" x="675.333" y="1238.17" width="23.333" height="21.667"/>
+  <object id="159" name="hh" x="704.333" y="1238.17" width="23.333" height="21.667"/>
+  <object id="160" name="hh" x="615.333" y="1149.17" width="23.333" height="21.667"/>
+  <object id="161" name="hh" x="644.333" y="1151.17" width="23.333" height="21.667"/>
+  <object id="162" name="hh" x="705.333" y="1149.17" width="23.333" height="21.667"/>
+  <object id="163" name="hh" x="675.333" y="1151.17" width="23.333" height="21.667"/>
+  <object id="164" name="hh" x="372.333" y="1054.17" width="23.333" height="21.667"/>
+  <object id="165" name="hh" x="405.333" y="1054.17" width="23.333" height="21.667"/>
+  <object id="166" name="hh" x="437.333" y="1056.17" width="23.333" height="21.667"/>
+  <object id="167" name="hh" x="466.333" y="1053.17" width="23.333" height="21.667"/>
+  <object id="168" name="hh" x="465.333" y="1086.17" width="23.333" height="21.667"/>
+  <object id="169" name="hh" x="435.333" y="1087.17" width="23.333" height="21.667"/>
+  <object id="170" name="hh" x="406.333" y="1086.17" width="23.333" height="21.667"/>
+  <object id="171" name="hh" x="374.333" y="1084.17" width="23.333" height="21.667"/>
+  <object id="172" name="hh" x="374.333" y="1117.17" width="23.333" height="21.667"/>
+  <object id="173" name="hh" x="406.333" y="1112.17" width="23.333" height="21.667"/>
+  <object id="174" name="hh" x="437.333" y="1111.17" width="23.333" height="21.667"/>
+  <object id="175" name="hh" x="466.333" y="1110.17" width="23.333" height="21.667"/>
+  <object id="176" name="hh" x="466.333" y="1146.17" width="23.333" height="21.667"/>
+  <object id="177" name="hh" x="433.333" y="1142.17" width="23.333" height="21.667"/>
+  <object id="178" name="hh" x="404.333" y="1142.17" width="23.333" height="21.667"/>
+  <object id="179" name="hh" x="374.333" y="1145.17" width="23.333" height="21.667"/>
+  <object id="180" name="hh" x="517.333" y="904.167" width="23.333" height="21.667"/>
+  <object id="181" name="hh" x="549.333" y="902.167" width="23.333" height="21.667"/>
+  <object id="182" name="hh" x="550.333" y="869.167" width="23.333" height="21.667"/>
+  <object id="183" name="hh" x="547.333" y="815.167" width="23.333" height="21.667"/>
+  <object id="184" name="hh" x="549.333" y="841.167" width="23.333" height="21.667"/>
+  <object id="185" name="hh" x="520.333" y="843.167" width="23.333" height="21.667"/>
+  <object id="186" name="hh" x="520.333" y="813.167" width="23.333" height="21.667"/>
+  <object id="187" name="hh" x="518.333" y="874.167" width="23.333" height="21.667"/>
+  <object id="188" name="hh" x="707.333" y="814.167" width="23.333" height="21.667"/>
+  <object id="189" name="hh" x="740.333" y="813.167" width="23.333" height="21.667"/>
+  <object id="190" name="hh" x="772.333" y="814.167" width="23.333" height="21.667"/>
+  <object id="191" name="hh" x="803.333" y="815.167" width="23.333" height="21.667"/>
+  <object id="192" name="hh" x="803.333" y="848.167" width="23.333" height="21.667"/>
+  <object id="193" name="hh" x="801.333" y="874.167" width="23.333" height="21.667"/>
+  <object id="194" name="hh" x="800.333" y="902.167" width="23.333" height="21.667"/>
+  <object id="195" name="hh" x="769.333" y="901.167" width="23.333" height="21.667"/>
+  <object id="196" name="hh" x="771.333" y="872.167" width="23.333" height="21.667"/>
+  <object id="197" name="hh" x="771.333" y="842.167" width="23.333" height="21.667"/>
+  <object id="198" name="hh" x="742.333" y="842.167" width="23.333" height="21.667"/>
+  <object id="199" name="hh" x="711.333" y="846.167" width="23.333" height="21.667"/>
+  <object id="200" name="hh" x="711.333" y="878.167" width="23.333" height="21.667"/>
+  <object id="201" name="hh" x="742.333" y="870.167" width="23.333" height="21.667"/>
+  <object id="202" name="hh" x="740.333" y="904.167" width="23.333" height="21.667"/>
+  <object id="203" name="hh" x="709.333" y="902.167" width="23.333" height="21.667"/>
+  <object id="204" name="hh" x="870.333" y="720.167" width="23.333" height="21.667"/>
+  <object id="205" name="hh" x="899.333" y="720.167" width="23.333" height="21.667"/>
+  <object id="206" name="hh" x="901.333" y="750.167" width="23.333" height="21.667"/>
+  <object id="207" name="hh" x="868.333" y="750.167" width="23.333" height="21.667"/>
+  <object id="208" name="hh" x="865.333" y="779.167" width="23.333" height="21.667"/>
+  <object id="209" name="hh" x="899.333" y="777.167" width="23.333" height="21.667"/>
+  <object id="210" name="hh" x="895.333" y="806.167" width="23.333" height="21.667"/>
+  <object id="211" name="hh" x="863.333" y="805.167" width="23.333" height="21.667"/>
+  <object id="212" name="hh" x="709.333" y="621.167" width="23.333" height="21.667"/>
+  <object id="213" name="hh" x="742.333" y="621.167" width="23.333" height="21.667"/>
+  <object id="214" name="hh" x="773.333" y="621.167" width="23.333" height="21.667"/>
+  <object id="215" name="hh" x="798.333" y="623.167" width="23.333" height="21.667"/>
+  <object id="216" name="hh" x="800.333" y="652.167" width="23.333" height="21.667"/>
+  <object id="217" name="hh" x="770.333" y="653.167" width="23.333" height="21.667"/>
+  <object id="218" name="hh" x="741.333" y="650.167" width="23.333" height="21.667"/>
+  <object id="219" name="hh" x="709.333" y="651.167" width="23.333" height="21.667"/>
+  <object id="220" name="hh" x="709.333" y="679.167" width="23.333" height="21.667"/>
+  <object id="221" name="hh" x="740.333" y="678.167" width="23.333" height="21.667"/>
+  <object id="222" name="hh" x="773.333" y="681.167" width="23.333" height="21.667"/>
+  <object id="223" name="hh" x="805.333" y="680.167" width="23.333" height="21.667"/>
+  <object id="224" name="hh" x="801.333" y="711.167" width="23.333" height="21.667"/>
+  <object id="225" name="hh" x="770.333" y="713.167" width="23.333" height="21.667"/>
+  <object id="226" name="hh" x="741.333" y="711.167" width="23.333" height="21.667"/>
+  <object id="227" name="hh" x="710.333" y="708.167" width="23.333" height="21.667"/>
+  <object id="228" name="hh" x="132.333" y="1389.17" width="23.333" height="21.667"/>
+  <object id="229" name="hh" x="164.333" y="1391.17" width="23.333" height="21.667"/>
+  <object id="230" name="hh" x="194.333" y="1392.17" width="23.333" height="21.667"/>
+  <object id="231" name="hh" x="225.333" y="1391.17" width="23.333" height="21.667"/>
+  <object id="232" name="hh" x="226.333" y="1421.17" width="23.333" height="21.667"/>
+  <object id="233" name="hh" x="196.333" y="1419.17" width="23.333" height="21.667"/>
+  <object id="234" name="hh" x="164.333" y="1418.17" width="23.333" height="21.667"/>
+  <object id="235" name="hh" x="132.333" y="1417.17" width="23.333" height="21.667"/>
+  <object id="236" name="hh" x="133.333" y="1450.17" width="23.333" height="21.667"/>
+  <object id="237" name="hh" x="162.333" y="1449.17" width="23.333" height="21.667"/>
+  <object id="238" name="hh" x="194.333" y="1448.17" width="23.333" height="21.667"/>
+  <object id="239" name="hh" x="227.333" y="1450.17" width="23.333" height="21.667"/>
+  <object id="240" name="hh" x="226.333" y="1479.17" width="23.333" height="21.667"/>
+  <object id="241" name="hh" x="195.333" y="1477.17" width="23.333" height="21.667"/>
+  <object id="242" name="hh" x="166.333" y="1475.17" width="23.333" height="21.667"/>
+  <object id="243" name="hh" x="135.333" y="1477.17" width="23.333" height="21.667"/>
  </objectgroup>
 </map>

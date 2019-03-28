@@ -1,5 +1,6 @@
 import pygame
 import settings
+import random
 # Pour transmettre deux coordonées plus simplement
 spd = pygame.math.Vector2
 
@@ -62,7 +63,8 @@ class Player(pygame.sprite.Sprite):
     def hautes_herbes(self):
         hit = pygame.sprite.spritecollide(self, self.app.hh, False)
         if hit:
-            self.hh = True
+            self.hh = random.randint(0,5)
+
     def update(self):
         pygame.sprite.Sprite.update(self)
 
