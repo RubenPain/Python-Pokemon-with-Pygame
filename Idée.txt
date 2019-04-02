@@ -1,0 +1,6 @@
+Attaques et entity faut transmettre nom, vie, attaque, dmg et (lvl)
+Tout transmettre à entity et récupérer par l'intermédiarie d'EC ?
+Quand tu rencontres le centre pokémon soin effectué
+Menu avec liste de notre équipe pokémon
+Sprite sheet pour le design
+Sauvegarde sur serveur?
