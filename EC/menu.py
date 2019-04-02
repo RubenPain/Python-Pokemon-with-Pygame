@@ -3,6 +3,7 @@ import EC.defines as defines
 from EC.text import Txt
 from EC.entity import Entity, Attaque
 from EC.life import Life
+import random
 
 
 
@@ -20,8 +21,14 @@ class EC(pygame.sprite.Sprite):
         self.rect.centery = defines.Screen.HEIGHT/2
 
         self.menu = Menu(self.image.get_width() / 2, self.image.get_height())
-        self.player = Entity(100, 'Lugia', defines.Colors.GREEN, 32, 150, 100)
-        self.enm = Entity(50, 'Raikou', defines.Colors.RED, 580, 150, 50)
+        self.player = Entity(50, 'Lugia', defines.Colors.GREEN, 32, 150, 50)
+        self.rdm = random.randint(0, len(defines.pokemon.poke_list)-1)
+        self.life_rdm = random.randint(10, 25)
+        defines.pokemon.poke_list[self.rdm][0] = self.life_rdm
+        defines.pokemon.poke_list[self.rdm][5] = self.life_rdm
+        self.enm = Entity(defines.pokemon.poke_list[self.rdm][0], defines.pokemon.poke_list[self.rdm][1],
+                          defines.pokemon.poke_list[self.rdm][2], defines.pokemon.poke_list[self.rdm][3],
+                          defines.pokemon.poke_list[self.rdm][4], defines.pokemon.poke_list[self.rdm][5])
         self.life = Life()
 
         self.selct_att = False
@@ -29,8 +36,18 @@ class EC(pygame.sprite.Sprite):
         self.choose_att = True
         self.att = 0
         self.start_tick = 1000000
+        self.end_tick = 1000000
+        self.kill_enm_tick = 1000000
+        self.kill_pl_tick = 1000000
         self.enms = pygame.sprite.Group()
         self.enms.add(self.enm)
+        self.end_enm = False
+        self.end_pl = False
+        self.suite_enm_0 = False
+        self.enm_0 = True
+        self.suite_player_0 = False
+        self.player_0 = True
+
 
 
 
@@ -64,26 +81,72 @@ class EC(pygame.sprite.Sprite):
         if keys_pressed[pygame.K_RETURN] and self.att == 1:
             self.dmg = self.attaque.damage
             self.menu.image.fill(defines.Colors.WHITE)
-            self.menu.text.draw_text(self.menu.image, "Vous avez infligé " + str(self.dmg) + " points de dégâts !", 35,
-                                     100, self.menu.image.get_height() / 2, defines.Colors.BLACK)
             self.enm.life = self.enm.life - self.dmg
             self.selct_att = False
             self.att = 0
             self.start_tick = pygame.time.get_ticks()
+            if self.enm.life > 0:
+                self.menu.text.draw_text(self.menu.image, "Vous avez infligé " + str(self.dmg) + " points de dégâts !", 35,
+                                     120, self.menu.image.get_height() / 2, defines.Colors.BLACK)
 
-        if (pygame.time.get_ticks()-self.start_tick)/1000>2:
+        if (pygame.time.get_ticks()-self.start_tick)/1000>2 and self.enm.life > 0:
+            self.enm_dmg = self.attaque.enm_dmg
+            self.player.life = self.player.life - self.enm_dmg
+            self.start_tick = 1000000
+            if self.player.life > 0:
+                self.menu.image.fill(defines.Colors.WHITE)
+                self.menu.text.draw_text(self.menu.image, "Vous avez subi " + str(self.enm_dmg) + " points de dégâts !", 35,
+                                         120, self.menu.image.get_height() / 2, defines.Colors.BLACK)
+                self.end_tick = pygame.time.get_ticks()
+
+
+
+        if (pygame.time.get_ticks()-self.end_tick)/1000>2:
             self.menu.image.fill(defines.Colors.WHITE)
             self.menu.draw()
             self.selct_base = True
-        if (pygame.time.get_ticks()-self.start_tick)/1000>3 and self.enm.life > 0:
-            self.enm_dmg = self.attaque.damage
-            self.player.life = self.player.life - self.enm_dmg
-            self.start_tick = 1000000
+            self.end_tick = 1000000
 
-        if self.enm.life <= 0:
+        if self.enm.life <= 0 and self.enm_0:
+            self.menu.text.draw_text(self.menu.image, "Vous avez infligé " + str(self.dmg)+ " points de dégats." , 35,
+                                     120, self.menu.image.get_height() / 2, defines.Colors.BLACK)
+            self.menu.text.draw_text(self.menu.image, self.enm.name + " est KO !", 35,
+                                     230, (self.menu.image.get_height() / 2)+30, defines.Colors.BLACK)
+            self.suite_enm_0 = True
+            self.enm_0 = False
+
+
+        if self.suite_enm_0:
+            self.suite_enm_0 = False
+            self.kill_enm_tick = pygame.time.get_ticks()
+
+        if (pygame.time.get_ticks()-self.kill_enm_tick)/1000 > 3:
             self.enm.kill()
+            self.end_enm = True
+            self.kill()
+            self.kill_enm_tick = 100000
 
 
+
+
+        if self.player.life <= 0 and self.player_0:
+            self.menu.image.fill(defines.Colors.WHITE)
+            self.menu.text.draw_text(self.menu.image, "Vous avez subi " + str(self.enm_dmg)+ " points de dégats." , 35,
+                                     120, self.menu.image.get_height() / 2, defines.Colors.BLACK)
+            self.menu.text.draw_text(self.menu.image, self.player.name + " est KO !", 35,
+                                     230, (self.menu.image.get_height() / 2)+30, defines.Colors.BLACK)
+            self.suite_player_0 = True
+            self.player_0 = False
+
+
+        if self.suite_player_0:
+            self.suite_player_0 = False
+            self.kill_pl_tick = pygame.time.get_ticks()
+
+        if (pygame.time.get_ticks()-self.kill_pl_tick)/1000 > 3:
+            self.end_pl = True
+            self.kill_pl_tick = 100000
+            self.kill()
 
 
 
@@ -93,17 +156,23 @@ class EC(pygame.sprite.Sprite):
 
     def draw(self):
         self.image.fill(defines.Colors.BLUE)
-        self.image.blit(self.player.image, self.player.rect)
-        self.enms.draw(self.image)
-        self.life.draw_life_bar(self.player.largeur, self.image, self.player.rect.x, self.player.rect.y - 15,
+
+
+        if self.player.life > 0:
+            self.life.draw_life_bar(self.player.largeur, self.image, self.player.rect.x, self.player.rect.y - 15,
                                 self.player.life)
-        self.menu.text.draw_text(self.image, str(self.player.life) + "/" + str(self.player.largeur), 20, self.player.rect.x,
+            self.menu.text.draw_text(self.image, self.player.name, 30, self.player.rect.x, self.player.rect.y - 45,
+                                     defines.Colors.BLACK)
+            self.menu.text.draw_text(self.image, str(self.player.life) + "/" + str(self.player.largeur), 20, self.player.rect.x,
                                  self.player.rect.y - 25, defines.Colors.BLACK)
+            self.image.blit(self.player.image, self.player.rect)
         if self.enm.life > 0:
             self.life.draw_life_bar(self.enm.largeur, self.image, self.enm.rect.x,
                                     self.enm.rect.y - 15, self.enm.life)
+            self.menu.text.draw_text(self.image, self.enm.name, 30, self.enm.rect.x, self.enm.rect.y - 45, defines.Colors.BLACK)
             self.menu.text.draw_text(self.image, str(self.enm.life)+"/"+str(self.enm.largeur), 20,
                                      self.enm.rect.x, self.enm.rect.y - 25, defines.Colors.BLACK)
+            self.enms.draw(self.image)
         self.image.blit(self.menu.image, self.menu.rect)
 
 

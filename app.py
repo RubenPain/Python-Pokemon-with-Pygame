@@ -7,7 +7,7 @@ from tmap import Tmap
 from cam import Camera
 from npc import NPC
 import json
-import EC.menu
+import EC.menu, EC.entity
 import random
 
 
@@ -68,6 +68,7 @@ class App():
         self.EC = EC.menu.EC()
         self.combat.add(self.EC)
         self.count_fade = True
+        self.start_tick = 1000000
 
     def draw_grid(self):
         # Pour quadriller la map
@@ -112,6 +113,7 @@ class App():
                 self.camera.update(self.player)
 
 
+
             # La map est dessinée
             self.screen.blit(self.map_img, self.camera.apply_rect(self.map_rect))
 
@@ -119,16 +121,44 @@ class App():
             # Tous les sprites dans le grp sont dessinés
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
+
             if self.player.hh == 2:
                 if self.count_fade:
                     self.fade(self.screen, 1500, 1500)
                     self.count_fade = False
                 self.combat.draw(self.screen)
                 self.EC.update()
+                if self.EC.end_enm:
+                    self.count_fade = True
+                    self.EC.end_enm = False
+                    self.player.hh = 0
+                    self.life_now = self.EC.player.life
+                    self.EC = EC.menu.EC()
+                    self.EC.player.life = 10#self.life_now
+                    self.combat.add(self.EC)
+                if self.EC.end_pl:
+                    self.count_fade = True
+                    self.EC.end_pl = False
+                    self.player.hh = 0
+                    self.player.kill()
+                    self.EC = EC.menu.EC()
+                    self.combat.add(self.EC)
+                    for t_objet in self.map.tmxdata.objects:
+                        if t_objet.name == 'player':
+                            self.player = Player(self, t_objet.x, t_objet.y)
+
+                if (pygame.time.get_ticks() - self.start_tick) / 1000 > 5:
+                    for t_objet in self.map.tmxdata.objects:
+                        if t_objet.name == 'hh':
+                            HH(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
+                    self.start_tick = 1000000
+
+
 
 
             # Une fois que tout est dessiné, on l'affiche à l'écran
             pygame.display.flip()
+
 
             # Quand on sort de la boucle, on ferme le jeu
         pygame.quit()

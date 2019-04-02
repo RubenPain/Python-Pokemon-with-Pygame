@@ -13,16 +13,18 @@ class Colors:
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BLUE = (0, 0, 255)
+    X = (125, 125, 125)
+    Y = (0, 125, 255)
+    Z = (255, 0, 100)
 
 class entity:
     life_enm = random.randint(15,50)
 
 class pokemon:
-    poke_dict = {}
-    poke_list = [('Lugia','Ultralaser'),('Raikou','Tonnerre'),('Lugia',(15,25)),('Raikou',random.randint(15,25))]
-    for (x,y) in poke_list:
-        if x in poke_dict:
-            poke_dict[x].append(y)
-        else:
-            poke_dict[x] = [y]
+    poke_list = []
+    attaque = ["Charge", "Tonnerre", "Lance-Flamme"]
+    poke_list.append([0, "Nosferapti", Colors.Z, 580, 150, 0])
+    poke_list.append([0, "Roucool", Colors.Y, 580, 150, 0])
+    poke_list.append([0, "Zigzaton", Colors.X, 580, 150, 0])
+
 
