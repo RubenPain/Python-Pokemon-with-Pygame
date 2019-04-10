@@ -21,14 +21,13 @@ class EC(pygame.sprite.Sprite):
         self.rect.centery = defines.Screen.HEIGHT/2
 
         self.menu = Menu(self.image.get_width() / 2, self.image.get_height())
-        self.player = Entity(50, 'Lugia', defines.Colors.GREEN, 32, 150, 50)
+        self.player = Entity(50, 'Noadkoko', 'noadkoko.png', 32, 140, 50)
+        self.player.image = pygame.transform.flip(self.player.image, 180, 0)
         self.rdm = random.randint(0, len(defines.pokemon.poke_list)-1)
-        self.life_rdm = random.randint(10, 25)
+        self.life_rdm = random.randint(20, 35)
         defines.pokemon.poke_list[self.rdm][0] = self.life_rdm
         defines.pokemon.poke_list[self.rdm][5] = self.life_rdm
-        self.enm = Entity(defines.pokemon.poke_list[self.rdm][0], defines.pokemon.poke_list[self.rdm][1],
-                          defines.pokemon.poke_list[self.rdm][2], defines.pokemon.poke_list[self.rdm][3],
-                          defines.pokemon.poke_list[self.rdm][4], defines.pokemon.poke_list[self.rdm][5])
+        self.enm = Entity(*defines.pokemon.poke_list[self.rdm])
         self.life = Life()
 
         self.selct_att = False
@@ -76,6 +75,11 @@ class EC(pygame.sprite.Sprite):
 
         if keys_pressed[pygame.K_RIGHT] and self.selct_att == True:
             pygame.draw.rect(self.menu.image, defines.Colors.RED, self.attaque.cadre, 2)
+            pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.attaque.cadre1, 2)
+            self.att = 1
+        elif keys_pressed[pygame.K_LEFT] and self.selct_att == True and self.selct_base == False:
+            pygame.draw.rect(self.menu.image, defines.Colors.RED, self.attaque.cadre1, 2)
+            pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.attaque.cadre, 2)
             self.att = 1
 
         if keys_pressed[pygame.K_RETURN] and self.att == 1:

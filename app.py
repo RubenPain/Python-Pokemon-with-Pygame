@@ -39,6 +39,7 @@ class App():
 
 
 
+
     def create(self):
         # On crée un groupe pour les sprites
         self.all_sprites = pygame.sprite.Group()
@@ -69,6 +70,7 @@ class App():
         self.combat.add(self.EC)
         self.count_fade = True
         self.start_tick = 1000000
+
 
     def draw_grid(self):
         # Pour quadriller la map
@@ -134,7 +136,7 @@ class App():
                     self.player.hh = 0
                     self.life_now = self.EC.player.life
                     self.EC = EC.menu.EC()
-                    self.EC.player.life = 10#self.life_now
+                    self.EC.player.life = self.life_now
                     self.combat.add(self.EC)
                 if self.EC.end_pl:
                     self.count_fade = True

@@ -16,15 +16,17 @@ class Colors:
     X = (125, 125, 125)
     Y = (0, 125, 255)
     Z = (255, 0, 100)
+    toto = (72, 112, 168)
 
 class entity:
     life_enm = random.randint(15,50)
 
 class pokemon:
     poke_list = []
-    attaque = ["Charge", "Tonnerre", "Lance-Flamme"]
-    poke_list.append([0, "Nosferapti", Colors.Z, 580, 150, 0])
-    poke_list.append([0, "Roucool", Colors.Y, 580, 150, 0])
-    poke_list.append([0, "Zigzaton", Colors.X, 580, 150, 0])
+    attaque = {'Noadkoko':["Bomb-oeuf", "Charge"]}
+    poke_list.append([0, "Rhinocorne", 'rhinocorne.png', 530, 140, 0])
+    poke_list.append([0, "Insécateur", 'insécateur.png', 530, 140, 0])
+    poke_list.append([0, "Smogo", 'smogo.png', 530, 140, 0])
+    poke_list.append([0, "Scarabrute", 'scarabrute.png', 530, 140, 0])
 
 
