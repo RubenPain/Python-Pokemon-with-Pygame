@@ -25,6 +25,14 @@ class EC(pygame.sprite.Sprite):
         self.player.image = pygame.transform.flip(self.player.image, 180, 0)
         self.rdm = random.randint(0, len(defines.pokemon.poke_list)-1)
         self.life_rdm = random.randint(20, 35)
+        self.tirage = 0
+        if self.rdm == len(defines.pokemon.poke_list)-1:
+            self.tirage == random.randrange(0,2)
+            if self.tirage == 1:
+                self.life_rdm = 65
+                pass
+            else:
+                self.rdm = random.randint(0, len(defines.pokemon.poke_list)-1)
         defines.pokemon.poke_list[self.rdm][0] = self.life_rdm
         defines.pokemon.poke_list[self.rdm][5] = self.life_rdm
         self.enm = Entity(*defines.pokemon.poke_list[self.rdm])

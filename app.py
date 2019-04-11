@@ -1,14 +1,13 @@
 import pygame
 from player import Player
 import settings
-from wall import Obstacle, HH
+from wall import Obstacle, HH, Center
 from os import path
 from tmap import Tmap
 from cam import Camera
 from npc import NPC
 import json
 import EC.menu, EC.entity
-import random
 
 
 class App():
@@ -45,6 +44,7 @@ class App():
         self.all_sprites = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
         self.hh = pygame.sprite.Group()
+        self.guerir = pygame.sprite.Group()
         self.combat = pygame.sprite.Group()
         '''
         for row, tiles in enumerate(self.map.data):
@@ -64,6 +64,9 @@ class App():
                 NPC(self, t_objet.x, t_objet.y)
             if t_objet.name == 'hh':
                 HH(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
+            if t_objet.name == 'center':
+                Center(self, t_objet.x, t_objet.y, t_objet.width, t_objet.height)
+
         # Création de la caméra
         self.camera = Camera(self.map.width, self.map.height)
         self.EC = EC.menu.EC()
@@ -95,8 +98,37 @@ class App():
             pygame.time.delay(1)
 
 
+    def show_start_screen(self):
+        self.screen.fill(settings.Colors.BLACK)
+        self.EC.menu.text.draw_text(self.screen, "ELDLC Pokemon v1", 100,
+                       settings.Screen.WIDTH / 6, (settings.Screen.HEIGHT / 2)-100, settings.Colors.RED)
+        self.EC.menu.text.draw_text(self.screen, "Baladez-vous avec votre Noadkoko et combattez des pokémons dans les hautes herbes.", 33,
+                            50, (settings.Screen.HEIGHT * 3/4)-150, settings.Colors.WHITE)
+        self.EC.menu.text.draw_text(self.screen,
+                                   "Peut-être aurez vous la chance de rencontrer le créateur de toutes choses.",
+                                   35,
+                                   50, (settings.Screen.HEIGHT * 3 / 4) - 110,
+                                   settings.Colors.WHITE)
+        self.EC.menu.text.draw_text(self.screen, "Press a key to start", 75,
+                       settings.Screen.WIDTH / 4, (settings.Screen.HEIGHT * 5 / 6)-60, settings.Colors.GREEN)
+        pygame.display.flip()
+        self.wait_for_key()
+        self.debut = pygame.time.get_ticks()
+
+    def wait_for_key(self):
+        pygame.event.wait()
+        waiting = True
+        while waiting:
+            self.clock.tick(settings.Screen.FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.KEYUP:
+                    waiting = False
+
     def Start(self):
         running = True
+        self.show_start_screen()
         while running:
             # On fixe les FPS du jeu
             self.time = self.clock.tick(settings.Screen.FPS)/1000
@@ -148,6 +180,9 @@ class App():
                     for t_objet in self.map.tmxdata.objects:
                         if t_objet.name == 'player':
                             self.player = Player(self, t_objet.x, t_objet.y)
+                if self.player.guerir:
+                    self.EC.player.life = 50
+                    self.player.guerir = False
 
                 if (pygame.time.get_ticks() - self.start_tick) / 1000 > 5:
                     for t_objet in self.map.tmxdata.objects:

@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.cells = []
         self.frames = []
         self.hh = False
+        self.guerir = False
         for i in range(15):
 
             # On crée une case
@@ -66,7 +67,10 @@ class Player(pygame.sprite.Sprite):
         if hit:
             self.hh = random.randint(0,5)
 
-
+    def center_pokemon(self):
+        hit = pygame.sprite.spritecollide(self, self.app.guerir, False)
+        if hit:
+            self.guerir = True
 
     def update(self):
         pygame.sprite.Sprite.update(self)
@@ -130,4 +134,4 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = self.pos.y
         self.collide_with_walls('y')
         self.hautes_herbes()
-
+        self.center_pokemon()

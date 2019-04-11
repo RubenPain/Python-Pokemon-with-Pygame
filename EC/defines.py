@@ -28,5 +28,6 @@ class pokemon:
     poke_list.append([0, "Insécateur", 'insécateur.png', 530, 140, 0])
     poke_list.append([0, "Smogo", 'smogo.png', 530, 140, 0])
     poke_list.append([0, "Scarabrute", 'scarabrute.png', 530, 140, 0])
+    poke_list.append([0, "Palkia", 'arceus.png', 530, 140, 0])
 
 
