@@ -4,6 +4,7 @@ from EC.text import Txt
 from EC.entity import Entity, Attaque
 from EC.life import Life
 import random
+from os import path
 
 
 
@@ -15,8 +16,12 @@ class EC(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.Surface((700,350))
-        self.image.fill(defines.Colors.BLUE)
+        self.image.fill(defines.Colors.GREENBG)
+
         self.rect = self.image.get_rect()
+        self.r = pygame.Rect.copy(self.rect)
+        pygame.draw.rect(self.image, defines.Colors.BLACK, self.r, 2)
+
         self.rect.centerx = defines.Screen.WIDTH/2
         self.rect.centery = defines.Screen.HEIGHT/2
 
@@ -27,7 +32,7 @@ class EC(pygame.sprite.Sprite):
         self.life_rdm = random.randint(20, 35)
         self.tirage = 0
         if self.rdm == len(defines.pokemon.poke_list)-1:
-            self.tirage == random.randrange(0,2)
+            self.tirage = random.randrange(0,2)
             if self.tirage == 1:
                 self.life_rdm = 65
                 pass
@@ -79,6 +84,7 @@ class EC(pygame.sprite.Sprite):
         if keys_pressed[pygame.K_RETURN] and self.selct_att == True:
             self.selct_base = False
             self.menu.image.fill(defines.Colors.WHITE)
+            pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.menu.r, 2)
             self.attaque = Attaque(self.menu.image, self.menu.x+15, self.menu.y)
 
         if keys_pressed[pygame.K_RIGHT] and self.selct_att == True:
@@ -93,6 +99,7 @@ class EC(pygame.sprite.Sprite):
         if keys_pressed[pygame.K_RETURN] and self.att == 1:
             self.dmg = self.attaque.damage
             self.menu.image.fill(defines.Colors.WHITE)
+            pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.menu.r, 2)
             self.enm.life = self.enm.life - self.dmg
             self.selct_att = False
             self.att = 0
@@ -107,6 +114,7 @@ class EC(pygame.sprite.Sprite):
             self.start_tick = 1000000
             if self.player.life > 0:
                 self.menu.image.fill(defines.Colors.WHITE)
+                pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.menu.r, 2)
                 self.menu.text.draw_text(self.menu.image, "Vous avez subi " + str(self.enm_dmg) + " points de dégâts !", 35,
                                          120, self.menu.image.get_height() / 2, defines.Colors.BLACK)
                 self.end_tick = pygame.time.get_ticks()
@@ -115,6 +123,7 @@ class EC(pygame.sprite.Sprite):
 
         if (pygame.time.get_ticks()-self.end_tick)/1000>2:
             self.menu.image.fill(defines.Colors.WHITE)
+            pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.menu.r, 2)
             self.menu.draw()
             self.selct_base = True
             self.end_tick = 1000000
@@ -143,6 +152,7 @@ class EC(pygame.sprite.Sprite):
 
         if self.player.life <= 0 and self.player_0:
             self.menu.image.fill(defines.Colors.WHITE)
+            pygame.draw.rect(self.menu.image, defines.Colors.BLACK, self.menu.r, 2)
             self.menu.text.draw_text(self.menu.image, "Vous avez subi " + str(self.enm_dmg)+ " points de dégats." , 35,
                                      120, self.menu.image.get_height() / 2, defines.Colors.BLACK)
             self.menu.text.draw_text(self.menu.image, self.player.name + " est KO !", 35,
@@ -163,11 +173,9 @@ class EC(pygame.sprite.Sprite):
 
 
 
-
-
-
     def draw(self):
-        self.image.fill(defines.Colors.BLUE)
+        self.image.fill(defines.Colors.GREENBG)
+        pygame.draw.rect(self.image, defines.Colors.BLACK, self.r, 2)
 
 
         if self.player.life > 0:
@@ -197,6 +205,8 @@ class Menu(pygame.sprite.Sprite):
         self.image = pygame.Surface((700, 125))
         self.image.fill(defines.Colors.WHITE)
         self.rect = self.image.get_rect()
+        self.r = pygame.Rect.copy(self.rect)
+        pygame.draw.rect(self.image, defines.Colors.BLACK, self.r, 2)
         self.rect.centerx = x
         self.rect.bottom = y
 

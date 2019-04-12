@@ -39,7 +39,7 @@ class Attaque(pygame.sprite.Sprite):
         self.text.draw_text(surf, self.attribut.attaque[self.name_pok][1], 70, x - 300, y, defines.Colors.BLACK)
         self.cadre1 = pygame.Rect.copy(self.text.text_rect)
         pygame.draw.rect(surf, defines.Colors.BLACK, self.cadre1, 2)
-        self.damage = 50#random.randint(5,15)
+        self.damage = random.randint(5,15)
         self.enm_dmg = random.randint(5,15)
 
 
