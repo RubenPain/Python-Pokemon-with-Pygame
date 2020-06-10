@@ -14,6 +14,7 @@ Je reprendrai potentiellement le développement de ce jeu lorsque j'aurai plus d
 En attendant vous êtes libre de vous l'approprier et faire mieux tant que vous citez la source ;)
 
 Je vous mets aussi une todo à faire si vous voulez reprendre le développement :
+
     - Rafraichir le code et le rendre plus "propre"
     - Créer le menu pokémon en appuyant sur x
     - Améliorer l'écran de combat
