@@ -27,7 +27,6 @@ class App():
         img_folder = path.join(game_folder, 'img/assets')
         map_folder = path.join(game_folder, 'map')
         self.mus_folder = path.join(game_folder, 'music')
-        pygame.mixer_music.load(path.join(self.mus_folder, 'mechant.mp3'))
         self.map = Tmap(path.join(map_folder, "map.tmx"))
         self.map_img = self.map.make_map()
         self.map_rect = self.map_img.get_rect()
@@ -102,7 +101,7 @@ class App():
 
     def show_start_screen(self):
         self.screen.fill(settings.Colors.BLACK)
-        self.EC.menu.text.draw_text(self.screen, "ELDLC Pokemon v1", 100,
+        self.EC.menu.text.draw_text(self.screen, "Pokemon v0.0.1", 100,
                        settings.Screen.WIDTH / 6, (settings.Screen.HEIGHT / 2)-140, settings.Colors.RED)
         self.EC.menu.text.draw_text(self.screen, "Baladez-vous avec votre Noadkoko et combattez des pokémons dans les hautes herbes.", 33,
                             50, (settings.Screen.HEIGHT * 3/4)-190, settings.Colors.WHITE)
@@ -134,7 +133,6 @@ class App():
     def Start(self):
         running = True
         self.show_start_screen()
-        pygame.mixer_music.play(-1)
         while running:
             # On fixe les FPS du jeu
             self.time = self.clock.tick(settings.Screen.FPS)/1000
@@ -183,9 +181,7 @@ class App():
                     self.EC.player.life = self.life_now
                     self.combat.add(self.EC)
                     self.EC.end_enm = False
-                    if self.EC.tirage == 1:
-                        pygame.mixer_music.load(path.join(self.mus_folder, 'mechant.mp3'))
-                        pygame.mixer_music.play(-1)
+
                 if self.EC.end_pl:
                     self.count_fade = True
                     self.EC.end_pl = False
@@ -196,9 +192,6 @@ class App():
                     for t_objet in self.map.tmxdata.objects:
                         if t_objet.name == 'player':
                             self.player = Player(self, t_objet.x, t_objet.y)
-                    if self.EC.tirage == 1:
-                        pygame.mixer_music.load(path.join(self.mus_folder, 'mechant.mp3'))
-                        pygame.mixer_music.play(-1)
 
                 if (pygame.time.get_ticks() - self.start_tick) / 1000 > 5:
                     for t_objet in self.map.tmxdata.objects:
