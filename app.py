@@ -16,7 +16,7 @@ class App():
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((settings.Screen.WIDTH, settings.Screen.HEIGHT))
-        pygame.display.set_caption("PyGame")
+        pygame.display.set_caption("Pykemon")
         self.clock = pygame.time.Clock()
         self.load()
 
