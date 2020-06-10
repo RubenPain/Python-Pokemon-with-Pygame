@@ -1,8 +1,9 @@
 Tout premier jeu en python avec pygame !
 
 C'était un projet réalisé dans le cadre d'un cours d'apprentissage python. Ce jeu a été réalisé en 1 semaine puis mis de côté au profit d'autres cours.
+<a href="https://openclassrooms.com">OpenClassrooms</a>
 
-Le code n'est que très peu commenté et assez mal écrit mais it works XD 
+Le code n'est que très peu commenté et assez mal écrit but it works XD 
 
 C'est un rpg Pokemon, avec un système de combat tour par tour.
 La map est faite avec tiled et des assets en tout genre récupérés à droite à gauche.
