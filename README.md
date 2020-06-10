@@ -1,4 +1,4 @@
-<b style="font-size:25px">Tout premier jeu en python avec pygame !</b>
+<H1 align="center">Tout premier jeu en python avec pygame !</H1>
 
 C'était un projet réalisé dans le cadre d'un cours d'apprentissage python. Ce jeu a été réalisé en 1 semaine puis mis de côté au profit d'autres cours.
 
