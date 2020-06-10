@@ -1,6 +1,12 @@
 <H1 align="center">Tout premier jeu en python avec pygame !</H1>
 
-C'était un projet réalisé dans le cadre d'un cours d'apprentissage python. Ce jeu a été réalisé en 1 semaine puis mis de côté au profit d'autres cours.
+
+
+[![Un Jeu de RPG Pokemon très simple avec Python et Pygame !](https://img.youtube.com/vi/xa7MG9m1mvw/0.jpg)](https://www.youtube.com/watch?v=xa7MG9m1mvw "Un Jeu de RPG Pokemon très simple avec Python et Pygame !")
+
+
+
+À la base, c'est un projet réalisé dans le cadre d'un cours d'apprentissage de python. Ce jeu a été réalisé en 1 semaine puis mis de côté au profit d'autres cours.
 
 Le code n'est que très peu commenté et assez mal écrit but it works XD 
 
